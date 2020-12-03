@@ -1,0 +1,33 @@
+{
+  "formname": "formulaire de test",
+  "fieldsui": [
+    {
+      "xtype": "text",
+      "label": "Nom",
+      "name": "textfield1",
+      "value": "",
+      "mandatory": false
+    },
+    {
+      "xtype": "number",
+      "label": "Age",
+      "name": "numberfield1",
+      "maxvalue": "100",
+      "value": "",
+      "mandatory": true
+    },
+    {
+      "xtype": "date",
+      "label": "Date de naissance",
+      "name": "datefield1",
+      "value": "",
+      "mandatory": true
+    },
+    {
+      "xtype": "button",
+      "name": "textfield1",
+      "text": "Validate"
+    }
+  ],
+  "redirection": "https://www.wehoop.com/en/"
+}
