@@ -1,6 +1,7 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import API from "./API";
+
+import './form.css';
 
 export default class Formulaire extends React.Component {
   constructor() {
@@ -26,16 +27,21 @@ export default class Formulaire extends React.Component {
   
     const {textfield1,numberfield1,datefield1,testFile}=this.state;
    const data ={textfield1,numberfield1,datefield1}
-    
+    if((numberfield1.trim()==="") && (numberfield1.trim()==="")){
+      
+      this.setState({Error:"You must fill the fields "})
+    }
+    else{
     await API.sendData(data)
     .then((res)=>{
-     if(res.status===201) {
-      this.setState({Error:res.data.Error})
-     }
-     window.location.href = testFile.redirection;
-     
+            if(res.status===201) {
+              this.setState({Error:res.data.Error})
+              }else{
+              console.log(res.data);
+               window.location.href = testFile.redirection;
+            }
     
-    })
+    })}
     
 
   
@@ -44,7 +50,7 @@ export default class Formulaire extends React.Component {
   Button = (name, text) => {
     return (
       <div>
-        <button name={name} onClick={this.sendD}>
+        <button className="button" name={name} onClick={this.sendD}>
           {text}
         </button>
       </div>
@@ -86,12 +92,13 @@ export default class Formulaire extends React.Component {
     return (
       <div>
         
-        <div style={{ color: "red" }}>{Error}</div>
         {testFile &&<div>
-          <p>{testFile.formname}</p>
+          <h2>{testFile.formname}</h2>
+          
+        <div style={{ color: "red" }}>{Error}</div>
           {testFile.fieldsui.map((field, index) => (
             <div key={index}>
-              <label htmlFor={field.name}> {field.label}</label>
+              <label className="label" htmlFor={field.name}> {field.label}</label>
               {field.xtype === "button"
                 ?  this.Button(field.name,field.text)
                 : this.Field(field)}
