@@ -27,7 +27,7 @@ export default class Formulaire extends React.Component {
   
     const {textfield1,numberfield1,datefield1,testFile}=this.state;
    const data ={textfield1,numberfield1,datefield1}
-    if((numberfield1.trim()==="") && (numberfield1.trim()==="")){
+    if((numberfield1.trim()==="") && (datefield1.trim()==="")){
       
       this.setState({Error:"You must fill the fields "})
     }
